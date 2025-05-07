@@ -11,6 +11,7 @@ spec:
   sources:
     - repoURL: https://dapr.github.io/helm-charts/
       chart: dapr
+      releaseName: dapr
       targetRevision: 1.11.4
       helm:
         valueFiles:
