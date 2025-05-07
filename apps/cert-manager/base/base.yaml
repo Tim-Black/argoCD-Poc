@@ -12,8 +12,8 @@ spec:
       helm:
         releaseName: cert-manager
         valueFiles: 
-          - $values/apps/cert-manager/environment/dev/values-settings.yaml
-          - $values/apps/cert-manager/environment/dev/values-replicas.yaml
+          - $values/apps/cert-manager/environment/{{env}}
+        recurse: true
     - repoURL: https://github.com/Tim-Black/argoCD-Poc.git
       targetRevision: HEAD
       ref: values
