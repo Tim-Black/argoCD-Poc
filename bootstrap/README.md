@@ -95,3 +95,8 @@ kubectl delete ns argocd grafana-dev guestbook-dev grafana-prod guestbook-prod
 - Set `targetRevision` to a Git tag or commit for prod apps (not just `HEAD`).
 
 ---
+
+
+## Testing Helm
+
+- helm template chart/ --values common/values-common.yaml --values variants/prod/values-prod.yaml –values envs/prod-eu/values-env-default.yml –values envs/prod-eu/values-replicas.yml –values envs/prod-eu/values-version.yml –values envs/prod-eu/values-settings.yml
