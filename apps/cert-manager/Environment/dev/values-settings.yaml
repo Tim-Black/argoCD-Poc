@@ -1,6 +1,0 @@
-installCRDs: true
-prometheus:
-  servicemonitor:
-    enabled: true
-    labels:
-      release: "monitoring"
