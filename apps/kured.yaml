@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kured
+  namespace: kured
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kured
+  project: default
+  sources:
+    - repoURL: https://kubereboot.github.io/charts
+      chart: kured
+      targetRevision: 5.2.0
+      helm:
+        valueFiles:
+          - $values/apps-config/kured/base/values-base.yaml
+          - $values/apps-config/kured/variant/nonprod.yaml
+          - $values/apps-config/kured/environment/dev/values-settings.yaml
+    - repoURL: https://github.com/Tim-Black/argoCD-Poc.git
+      targetRevision: HEAD
+      ref: values
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

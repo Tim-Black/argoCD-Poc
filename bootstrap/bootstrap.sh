@@ -46,15 +46,15 @@ kubectl create secret tls argocd-tls \
 
 # Restart argocd-server to pick up --insecure config
 echo "🔄 Restarting argocd-server..."
-#kubectl -n argocd rollout restart deployment argocd-server
+kubectl -n argocd rollout restart deployment argocd-server
 
 # Wait for rollout to complete
-#kubectl -n argocd rollout status deployment argocd-server
+kubectl -n argocd rollout status deployment argocd-server
 
-#kubectl apply -f argocd-ingress.yaml
+kubectl apply -f argocd-ingress.yaml
 
 echo "🧩 Registering App of Apps..."
-kubectl apply -f ../apps/app-of-apps/app-of-apps.yaml
+kubectl apply -f ../apps/app-of-apps.yaml
 
 echo "🚀 Setup complete. Access ArgoCD at: https://argocd.local"
 
