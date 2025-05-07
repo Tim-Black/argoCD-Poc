@@ -1,4 +1,1 @@
-replicas: 
-  controller: 5
-  cainjector: 5
-  webhook: 5
+
