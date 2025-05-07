@@ -7,13 +7,15 @@ spec:
   project: default
   sources:
     - repoURL: https://charts.jetstack.io
-      targetRevision: 1.16.1
+      targetRevision: {{ .Values.version }} #1.16.1
       chart: cert-manager
       helm:
         releaseName: cert-manager
         valueFiles: 
           - $values/apps/cert-manager/Environment/dev/values-settings.yaml
           - $values/apps/cert-manager/Environment/dev/values-replicas.yaml
+          - $values/apps/cert-manager/Environment/dev/values-version.yaml
+          - $values/apps/cert-manager/Environment/dev/values-env-default.yaml
     - repoURL: https://github.com/Tim-Black/argoCD-Poc.git
       targetRevision: HEAD
       ref: values
