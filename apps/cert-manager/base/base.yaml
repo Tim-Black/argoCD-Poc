@@ -7,11 +7,11 @@ spec:
   project: default
   sources:
     - repoURL: https://charts.jetstack.io
-      targetRevision: {{ Values.version }} #1.16.1
+      targetRevision: {{Values.targetRevision}} #1.16.1
       chart: cert-manager
       helm:
         releaseName: cert-manager
-        valueFiles: 
+        valueFiles:
           - $values/apps/cert-manager/Environment/dev/values-settings.yaml
           - $values/apps/cert-manager/Environment/dev/values-replicas.yaml
           - $values/apps/cert-manager/Environment/dev/values-version.yaml
@@ -24,7 +24,7 @@ spec:
       prune: true
       selfHeal: true
   syncOptions:
-    - CreateNamespace=true  
+    - CreateNamespace=true
   destination:
     namespace: cert-manager
     server: https://kubernetes.default.svc
