@@ -14,7 +14,6 @@ spec:
         valueFiles: 
           - $values/apps/cert-manager/Environment/dev/values-settings.yaml
           - $values/apps/cert-manager/Environment/dev/values-replicas.yaml
-        recurse: true
     - repoURL: https://github.com/Tim-Black/argoCD-Poc.git
       targetRevision: HEAD
       ref: values
