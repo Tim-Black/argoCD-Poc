@@ -8,17 +8,17 @@ spec:
   generators:
   - list:
       elements:
-      - cluster: local-dev
-        url: https://127.0.0.1
+      - cluster: https://kubernetes.default.svc
+        name: local-dev
   template:
     metadata:
-      name: '{{.cluster}}-nginx'
+      name: '{{.cluster}}'
     spec:
-      project: test-project
+      project: test-nginx
       source:
         repoURL: https://github.com/Tim-Black/argoCD-Poc.git
         targetRevision: HEAD
-        path: 'nginx-chart/{{.cluster}}'
+        path: 'nginx-chart/{{.cluster.name}}'
       destination:
-        server: '{{.url}}'
+        server: '{{.cluster}}'
         namespace: appset
