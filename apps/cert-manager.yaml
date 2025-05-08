@@ -24,13 +24,15 @@ spec:
       - repoURL: https://charts.jetstack.io
         targetRevision: {{.Values.cert-manager.version}}
         chart: cert-manager
-        path: 'application/certmanager/{{.cluster}}'
         helm:
           releaseName: cert-manager
           valueFiles:
             - $values/apps-config/cert-manager/base/values-base.yaml
             - $values/apps-config/cert-manager/variant/{{.variant}}.yaml
             - $values/apps-config/cert-manager/environment/{{.cluster}}/values-settings.yaml
+      - repoURL: https://github.com/Tim-Black/argoCD-Poc.git
+        targetRevision: HEAD
+        ref: values
       destination:
         server: '{{.url}}'
         namespace: certmanager
