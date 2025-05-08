@@ -30,6 +30,7 @@ spec:
         targetRevision: {{.chartVersion}}
         chart: cert-manager
         helm:
+          replicas: {{.Values.replicaCount | 1 }}
           valueFiles:
             - $values/apps-config/cert-manager/base/values-base.yaml
             - $values/apps-config/cert-manager/variant/{{.variant}}.yaml
