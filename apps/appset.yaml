@@ -12,13 +12,13 @@ spec:
         name: local-dev
   template:
     metadata:
-      name: '{{.cluster}}'
+      name: '{{.Cluster.Name}}-nginx'
     spec:
-      project: test-nginx
+      project: default
       source:
         repoURL: https://github.com/Tim-Black/argoCD-Poc.git
         targetRevision: HEAD
-        path: 'nginx-chart/{{.cluster.name}}'
+        path: 'nginx-chart/{{.Cluster.Name}}'
       destination:
-        server: '{{.cluster}}'
-        namespace: appset
+        server: '{{.Cluster}}'
+        namespace: argocd
