@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: appsets
+  name: argocd
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -24,3 +24,9 @@ spec:
       destination:
         server: '{{.url}}'
         namespace: appsets
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
