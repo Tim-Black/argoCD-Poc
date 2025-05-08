@@ -25,12 +25,12 @@ spec:
       name: '{{.cluster}}-cert-manager'
     spec:
       project: default
+      replicas: {{.Values.replicaCount | 1 }}
       sources:
       - repoURL: https://charts.jetstack.io
         targetRevision: {{.chartVersion}}
         chart: cert-manager
         helm:
-          replicas: {{.Values.replicaCount | 1 }}
           valueFiles:
             - $values/apps-config/cert-manager/base/values-base.yaml
             - $values/apps-config/cert-manager/variant/{{.variant}}.yaml
