@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: argocd
+  name: appOfSets
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -12,13 +12,13 @@ spec:
         name: local-dev
   template:
     metadata:
-      name: '{{.Cluster.Name}}-nginx'
+      name: '{{.cluster.name}}-nginx'
     spec:
       project: default
       source:
         repoURL: https://github.com/Tim-Black/argoCD-Poc.git
         targetRevision: HEAD
-        path: 'nginx-chart/{{.Cluster.Name}}'
+        path: 'nginx-chart/{{.cluster.name}}'
       destination:
-        server: '{{.Cluster}}'
+        server: '{{.cluster}}'
         namespace: argocd
