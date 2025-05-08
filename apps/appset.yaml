@@ -16,7 +16,7 @@ spec:
     metadata:
       name: '{{.cluster}}-nginx-frontend'
     spec:
-      release: nginx-frontend
+      releaseName: nginx-frontend
       project: default
       source:
         repoURL: https://github.com/Tim-Black/argoCD-Poc.git
