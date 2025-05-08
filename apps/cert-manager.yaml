@@ -25,7 +25,7 @@ spec:
       name: '{{.cluster}}-cert-manager'
     spec:
       project: default
-      replicas: {{.Values.replicaCount | 1 }}
+      replicas: {{.Values.replicaCount}}
       sources:
       - repoURL: https://charts.jetstack.io
         targetRevision: {{.chartVersion}}
