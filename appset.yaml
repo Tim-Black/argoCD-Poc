@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - list:
+      elements:
+      - cluster: apps
+        url: https://127.0.0.1
+  template:
+    metadata:
+      name: '{{.cluster}}-nginx'
+    spec:
+      project: test-project
+      source:
+        repoURL: https://github.com/Tim-Black/argoCD-Poc.git
+        targetRevision: HEAD
+        path: '{{.cluster}}/nginx'
+      destination:
+        server: '{{.url}}'
+        namespace: appset
