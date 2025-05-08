@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: argocd
-  release: nginx-frontend
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -17,6 +16,7 @@ spec:
     metadata:
       name: '{{.cluster}}'
     spec:
+      release: nginx-frontend
       project: default
       source:
         repoURL: https://github.com/Tim-Black/argoCD-Poc.git
