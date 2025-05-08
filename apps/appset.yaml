@@ -20,5 +20,5 @@ spec:
         targetRevision: HEAD
         path: 'nginx-chart/{{.cluster}}'
       destination:
-        server: '{{.cluster.server}}'
+        server: '{{.cluster}}'
         namespace: argocd
