@@ -11,9 +11,9 @@ spec:
       - cluster: local-dev
         url: https://kubernetes.default.svc
         variant: local
-      - cluster: uat
-        url: https://kubernetes.default.svc
-        variant: nonprod
+      # - cluster: uat
+      #   url: https://kubernetes.default.svc
+      #   variant: nonprod
   template:
     metadata:
       name: '{{.cluster}}-cert-manager'
@@ -21,7 +21,7 @@ spec:
       project: default
       sources:
       - repoURL: https://charts.jetstack.io
-        targetRevision:  1.16.1 #{{.Values.cert-manager.version}}
+        targetRevision:  {{.Values.cert-manager.version}}
         chart: cert-manager
         helm:
           valueFiles:
