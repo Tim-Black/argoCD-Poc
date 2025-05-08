@@ -14,6 +14,9 @@ spec:
       - cluster: uat
         url: https://kubernetes.default.svc
         variant: nonprod
+      - cluster: qa
+        url: https://kubernetes.default.svc
+        variant: nonprod
   template:
     metadata:
       name: '{{.cluster}}-cert-manager'
