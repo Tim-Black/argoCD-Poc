@@ -1,2 +1,2 @@
-cert-manager:
+dev-local:
   version: 1.16.1
