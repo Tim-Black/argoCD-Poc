@@ -8,7 +8,7 @@ spec:
   generators:
   - list:
       elements:
-      - cluster: apps
+      - cluster: local-dev
         url: https://127.0.0.1
   template:
     metadata:
@@ -18,7 +18,7 @@ spec:
       source:
         repoURL: https://github.com/Tim-Black/argoCD-Poc.git
         targetRevision: HEAD
-        path: '{{.cluster}}/nginx'
+        path: 'nginx-chart/{{.cluster}}'
       destination:
         server: '{{.url}}'
         namespace: appset
