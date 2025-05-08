@@ -1,6 +1,5 @@
 replicaCount: 1
-release:
-  name: nginx-release
+
 image:
   repository: nginx
   tag: "1.16.0"
