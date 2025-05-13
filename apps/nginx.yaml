@@ -1,34 +1,34 @@
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: nginx
-spec:
-  goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
-  generators:
-  - list:
-      elements:
-      - cluster: local-dev
-        url: https://kubernetes.default.svc
-      - cluster: uat
-        url: https://kubernetes.default.svc
-      - cluster: qa
-        url: https://kubernetes.default.svc
-  template:
-    metadata:
-      name: '{{.cluster}}-nginx-frontend'
-    spec:
-      project: default
-      source:
-        repoURL: https://github.com/Tim-Black/argoCD-Poc.git
-        targetRevision: HEAD
-        path: 'nginx-chart/{{.cluster}}'
-      destination:
-        server: '{{.url}}'
-        namespace: nginx
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        syncOptions:
-        - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: nginx
+# spec:
+#   goTemplate: true
+#   goTemplateOptions: ["missingkey=error"]
+#   generators:
+#   - list:
+#       elements:
+#       - cluster: local-dev
+#         url: https://kubernetes.default.svc
+#       - cluster: uat
+#         url: https://kubernetes.default.svc
+#       - cluster: qa
+#         url: https://kubernetes.default.svc
+#   template:
+#     metadata:
+#       name: '{{.cluster}}-nginx-frontend'
+#     spec:
+#       project: default
+#       source:
+#         repoURL: https://github.com/Tim-Black/argoCD-Poc.git
+#         targetRevision: HEAD
+#         path: 'nginx-chart/{{.cluster}}'
+#       destination:
+#         server: '{{.url}}'
+#         namespace: nginx
+#       syncPolicy:
+#         automated:
+#           prune: true
+#           selfHeal: true
+#         syncOptions:
+#         - CreateNamespace=true

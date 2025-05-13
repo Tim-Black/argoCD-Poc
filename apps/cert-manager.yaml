@@ -1,48 +1,48 @@
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: certmanager
-spec:
-  goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
-  generators:
-  - list:
-      elements:
-      - cluster: local-dev
-        url: https://kubernetes.default.svc
-        variant: local
-        chartVersion: 1.16.1
-      - cluster: uat
-        url: https://kubernetes.default.svc
-        variant: nonprod
-        chartVersion: 1.16.1
-      - cluster: qa
-        url: https://kubernetes.default.svc
-        variant: nonprod
-        chartVersion: 1.16.1
-  template:
-    metadata:
-      name: '{{.cluster}}-cert-manager'
-    spec:
-      project: default
-      sources:
-      - repoURL: https://charts.jetstack.io
-        targetRevision: {{.chartVersion}}
-        chart: cert-manager
-        helm:
-          valueFiles:
-            - $values/apps-config/cert-manager/base/values-base.yaml
-            - $values/apps-config/cert-manager/variant/{{.variant}}.yaml
-            - $values/apps-config/cert-manager/environment/{{.cluster}}/values-settings.yaml
-      - repoURL: https://github.com/Tim-Black/argoCD-Poc.git
-        targetRevision: HEAD
-        ref: values
-      destination:
-        server: '{{.url}}'
-        namespace: certmanager
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        syncOptions:
-        - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: certmanager
+# spec:
+#   goTemplate: true
+#   goTemplateOptions: ["missingkey=error"]
+#   generators:
+#   - list:
+#       elements:
+#       - cluster: local-dev
+#         url: https://kubernetes.default.svc
+#         variant: local
+#         chartVersion: 1.16.1
+#       - cluster: uat
+#         url: https://kubernetes.default.svc
+#         variant: nonprod
+#         chartVersion: 1.16.1
+#       - cluster: qa
+#         url: https://kubernetes.default.svc
+#         variant: nonprod
+#         chartVersion: 1.16.1
+#   template:
+#     metadata:
+#       name: '{{.cluster}}-cert-manager'
+#     spec:
+#       project: default
+#       sources:
+#       - repoURL: https://charts.jetstack.io
+#         targetRevision: {{.chartVersion}}
+#         chart: cert-manager
+#         helm:
+#           valueFiles:
+#             - $values/apps-config/cert-manager/base/values-base.yaml
+#             - $values/apps-config/cert-manager/variant/{{.variant}}.yaml
+#             - $values/apps-config/cert-manager/environment/{{.cluster}}/values-settings.yaml
+#       - repoURL: https://github.com/Tim-Black/argoCD-Poc.git
+#         targetRevision: HEAD
+#         ref: values
+#       destination:
+#         server: '{{.url}}'
+#         namespace: certmanager
+#       syncPolicy:
+#         automated:
+#           prune: true
+#           selfHeal: true
+#         syncOptions:
+#         - CreateNamespace=true
